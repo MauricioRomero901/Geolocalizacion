@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport"
+   content="width=device-width">
+ <title>
+    Archivos y Cámara - Geolocalización y archivos
+ </title>
+ <meta name="theme-color"
+   content="#6a0080">
+ <link rel="icon" sizes="32x32"
+   href="favicon.ico">
+ <link rel="manifest"
+   href="site.webmanifest">
+ <script type="module"
+   src="js/config.js"></script>
+ <link rel="stylesheet"
+   href="css/estilos.css">
+ <link rel="stylesheet"
+   href="lib/css/md3.css">
+   <script>
+    class MiNav extends HTMLElement {
+     connectedCallback() {
+      this.classList.add("navBar")
+      this.innerHTML = /* html */
+       `<a href="index.html">
+         <span
+           class="material-symbols-outlined">
+           my_location
+         </span>
+         GPS
+        </a>
+        <a href="archivos.html"
+          class="selected">
+         <span
+          class="material-symbols-outlined">
+          attach_file
+          </span>
+         Archivos
+        </a>
+        <a href="ayuda.html">
+         <span
+           class="material-symbols-outlined">
+          help
+         </span>
+         Ayuda
+        </a>`
+     }
+    }
+    customElements.
+     define("mi-nav", MiNav);
+   </script>
+
+<body>
+    <top-app-bar>
+        <h1 slot="headline">Archivos y Cámara</h1>
+        <mi-nav
+          slot="adicional"></mi-nav>
+       </top-app-bar>
+
+<p>
+    <label>
+     Foto de Móvil
+     <input type="file"
+       accept="image/*"
+       capture="camera">
+    </label>
+   </p>
+   <p>
+    <label>
+     Video de Móvil
+     <input type="file"
+       accept="video/*"
+       capture="">
+    </label>
+   </p>
+   <p>
+    <label for="archivo">
+     Archivo
+     <input type="file">
+    </label>
+   </p>
+ <mi-nav></mi-nav>
+</body>
+
+</html>
