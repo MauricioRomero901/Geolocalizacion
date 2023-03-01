@@ -6,7 +6,7 @@
  <meta name="viewport"
    content="width=device-width">
  <title>
-  Ayuda - PWA con Material Design
+  Ayuda - Geolocalización y archivos
  </title>
  <meta name="theme-color"
    content="#6a0080">
@@ -20,6 +20,38 @@
    href="css/estilos.css">
  <link rel="stylesheet"
    href="lib/css/md3.css">
+   <script>
+    class MiNav extends HTMLElement {
+     connectedCallback() {
+      this.classList.add("navBar")
+      this.innerHTML = /* html */
+       `<a href="index.html">
+         <span
+           class="material-symbols-outlined">
+           my_location
+         </span>
+         GPS
+        </a>
+        <a href="archivos.html"
+          class="selected">
+         <span
+          class="material-symbols-outlined">
+          attach_file
+          </span>
+         Archivos
+        </a>
+        <a href="ayuda.html">
+         <span
+           class="material-symbols-outlined">
+          help
+         </span>
+         Ayuda
+        </a>`
+     }
+    }
+    customElements.
+     define("mi-nav", MiNav);
+   </script>
 
 <body>
  <top-app-bar>
@@ -34,7 +66,7 @@
      Título
     </span>
     <span class="secondary">
-     Recomiendo
+      Geolocalización y archivos
     </span>
    </li>
    <li class="two-line">
@@ -42,8 +74,7 @@
      Descripción
     </span>
     <span class="secondary">
-     Recomienda artistas musicales
-     por género
+      Utilizzar geolocalización y subir cualquier tipo de archivo
     </span>
    </li>
    <li class="two-line">
@@ -65,6 +96,7 @@
    </li>
   </ul>
  </section>
+ <mi-nav></mi-nav>
 </body>
 
 </html>
