@@ -6,8 +6,7 @@
  <meta name="viewport"
    content="width=device-width">
  <title>
-  Recomiendo - PWA con Material
-  Design
+  GPS -Geolocalización y archivos
  </title>
  <meta name="theme-color"
    content="#fffbfe">
@@ -17,7 +16,7 @@
    href="site.webmanifest">
  <meta
    name="apple-mobile-web-app-title"
-   content="pwamd">
+   content="GYA">
  <meta
    name="apple-mobile-web-app-capable"
    content="yes">
@@ -53,85 +52,70 @@
    href="css/estilos.css">
  <link rel="stylesheet"
    href="lib/css/md3.css">
+
+
+   <script>
+    class MiNav extends HTMLElement {
+     connectedCallback() {
+      this.classList.add("navBar")
+      this.innerHTML = /* html */
+       `<a href="index.html">
+         <span
+           class="material-symbols-outlined">
+           my_location
+         </span>
+         gps
+        </a>
+        <a href="archivos.html"
+          class="selected">
+         <span
+          class="material-symbols-outlined">
+          attach_file
+          </span>
+         Archivos
+        </a>
+        <a href="ayuda.html">
+         <span
+           class="material-symbols-outlined">
+          help
+         </span>
+         Ayuda
+        </a>`
+     }
+    }
+    customElements.
+     define("mi-nav", MiNav);
+   </script>
 </head>
 
 <body>
- <form id="form" novalidate>
-  <center-aligned-top-app-bar>
-   <h1 slot="headline">
-    Recomiendo
-   </h1>
-   <mi-nav
-     slot="adicional"></mi-nav>
-  </center-aligned-top-app-bar>
-  <section>
-   <select-menu id="inGenero"
-     required>
-    <span slot="label">
-     *Género
-    </span>
-    <small id="msgGenero"
-      slot="supporting">
-     * Obligatorio
-    </small>
-    <menu-option
-      value=""></menu-option>
-    <menu-option value="pop">
-     Pop
-    </menu-option>
-    <menu-option value="reg">
-     Reguetón
-    </menu-option>
-   </select-menu>
-   <p>
-    <button class="filled">
-     Recomendar
-    </button>
-   </p>
-  </section>
- </form>
- <script type="module">
-  import {
-   muestraError
-  } from "./lib/js/muestraError.js"
-  import {
-   msg
-  } from "./lib/js/msg.js"
-  import {
-   recomienda
-  } from "./js/recomienda.js"
-
-  const OBLIGATORIO =
-   "* Obligatorio"
-
-  form.addEventListener(
-   "submit", procesa)
-  inGenero.addEventListener(
-   "input", copiaMensajes)
-
-  function copiaMensajes() {
-   msg(inGenero, msgGenero,
-    OBLIGATORIO)
-  }
-
-  /**
-   * @param {SubmitEvent} evt
-   */
-  function procesa(evt) {
-   evt.preventDefault()
-   try {
-    copiaMensajes()
-    if (inGenero.validity.valid) {
-     const genero = inGenero.value
-     const resultado =
-      recomienda(genero)
-     alert(resultado)
-    }
-   } catch (e) {
-    muestraError(e)
-   }
-  }
- </script>
+  <top-app-bar>
+    <h1 slot="headline">GPS</h1>
+    <mi-nav
+      slot="adicional"></mi-nav>
+   </top-app-bar>
+  <p>
+   <label>
+    Latitud
+    <output id="latitud"></output>
+   </label>
+  </p>
+  <p>
+   <label>
+    Longitud
+    <output id="longitud"></output>
+   </label>
+  </p>
+  <script>
+   navigator.geolocation.
+    watchPosition(p => {
+     latitud.value =
+      p.coords.latitude;
+     longitud.value =
+      p.coords.longitude;
+    });
+  </script>
+  <mi-nav></mi-nav>
 </body>
 
 </html>
